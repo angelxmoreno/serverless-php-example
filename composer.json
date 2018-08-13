@@ -1,0 +1,12 @@
+{
+    "name": "amoreno/serverless-php",
+    "authors": [
+        {
+            "name": "Angel S. Moreno",
+            "email": "angelxmoreno@gmail.com"
+        }
+    ],
+    "require": {
+        "mnapoli/bref": "^0.2.22"
+    }
+}
