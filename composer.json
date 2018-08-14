@@ -22,14 +22,14 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "FaaSPHP\\Test\\Unit": "spec/Unit/"
+      "FaaSPHP\\Tests\\": "spec/"
     }
   },
   "config": {
     "sort-packages": true,
     "bin-dir": "bin"
   },
-  "scripts" : {
+  "scripts": {
     "server": "php -S 127.0.0.1:8000 bref.php",
     "deploy": " ./bin/bref deploy",
     "info": " ./bin/bref info"

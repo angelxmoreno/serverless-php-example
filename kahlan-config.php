@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
 /**
  * @var Kahlan\Cli\Kahlan $this
  */
@@ -6,8 +8,8 @@
 use Kahlan\Box\Box;
 use Kahlan\Cli\CommandLine;
 use Kahlan\Filter\Filters;
-use Slim\Container;
 use Kahlan\Plugin\Double;
+use Slim\Container;
 
 /** @var CommandLine $commandLine */
 $commandLine = $this->commandLine();
@@ -27,4 +29,11 @@ $container['request'] = function (Container $c) {
     return Double::instance([
         'implements' => [\Psr\Http\Message\ServerRequestInterface::class]
     ]);
+};
+
+$container['app'] = function(Container $c) {
+    $slim = new \Slim\App($c);
+    require __DIR__ . '/config/routes.php';
+
+    return $slim;
 };
