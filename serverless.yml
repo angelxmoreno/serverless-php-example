@@ -11,6 +11,7 @@ package:
   include:
     - bref.php
     - 'src/**'
+    - 'config/**'
     - 'vendor/**'
 
 functions:
