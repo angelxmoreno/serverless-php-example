@@ -5,5 +5,7 @@
 
 use FaaSPHP\Functions;
 
-$slim->post('/f2c', Functions\FahrenheitConverter::class);
-$slim->post('/c2f', Functions\CelsiusConverter::class);
+$slim->group('/dev', function () {
+    $this->post('/f2c', Functions\FahrenheitConverter::class);
+    $this->post('/c2f', Functions\CelsiusConverter::class);
+});

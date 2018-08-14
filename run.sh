@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 STAGE_URL="https://rfvxsxrjd5.execute-api.us-east-1.amazonaws.com/dev"
-DEV_URL="http://localhost:8000"
+DEV_URL="http://localhost:8000/dev"
 
 FUNC=$1
 NUMBER=$2
