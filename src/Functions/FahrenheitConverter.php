@@ -1,8 +1,7 @@
 <?php
 namespace FaaSPHP\Functions;
 
-use Slim\Http\Response;
-use Zend\Diactoros\ServerRequest as Request;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Class FahrenheitConverter
@@ -10,15 +9,14 @@ use Zend\Diactoros\ServerRequest as Request;
  */
 class FahrenheitConverter extends BaseFunction
 {
-    public function run(Request $request, Response $response, array $args) : Response
+    public function run(Request $request, array $post = []) : array
     {
-        $params = $request->getParsedBody();
-        $f = isset($params['f']) ? (int)$params['f'] : 0;
+        $f = isset($post['f']) ? (int)$post['f'] : 0;
         $c = ($f - 32) * .5556;
 
-        return $response->withJson([
+        return [
             'fahrenheit' => $f,
             'celsius' => $c,
-        ]);
+        ];
     }
 }

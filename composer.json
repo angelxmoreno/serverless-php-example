@@ -20,6 +20,11 @@
       "FaaSPHP\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "FaaSPHP\\Test\\Unit": "spec/Unit/"
+    }
+  },
   "config": {
     "sort-packages": true,
     "bin-dir": "bin"

@@ -2,8 +2,8 @@
 namespace FaaSPHP\Functions;
 
 use Psr\Container\ContainerInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Http\Response;
-use Zend\Diactoros\ServerRequest as Request;
 
 /**
  * Class BaseFunction
@@ -28,19 +28,27 @@ abstract class BaseFunction
     /**
      * @param Request $request
      * @param Response $response
-     * @param array $args
      * @return Response
      */
-    public function __invoke(Request $request, Response $response, array $args) : Response
+    public function __invoke(Request $request, Response $response) : Response
     {
-        return $this->run($request, $response, $args);
+        $post = $this->getPostVariables($request);
+        $data = $this->run($request, $post);
+
+        return $response->withJson($data);
+    }
+
+    protected function getPostVariables(Request $request) : array
+    {
+        $body = $request->getParsedBody();
+
+        return is_array($body) ? $body : [];
     }
 
     /**
      * @param Request $request
-     * @param Response $response
-     * @param array $args
-     * @return Response
+     * @param array $post
+     * @return array
      */
-    abstract function run(Request $request, Response $response, array $args) : Response;
+    abstract function run(Request $request, array $post = []) : array;
 }
